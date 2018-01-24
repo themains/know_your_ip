@@ -1,0 +1,15 @@
+.*
+!.gitignore
+*.log
+*.html
+*.pyc
+*.7z
+venv
+*.mmdb
+dev/
+venv2
+venv3
+build
+dist
+*.egg-info
+*.whl
