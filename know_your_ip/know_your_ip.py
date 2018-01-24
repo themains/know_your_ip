@@ -191,7 +191,7 @@ def load_config(args=None):
 
 
 def maxmind_geocode_ip(args, ip):
-    """Get geocode data of IP address from Maxmind City database (GeoLite2-City.mmdb)
+    """Get geolocation data of IP address from Maxmind City database (GeoLite2-City.mmdb)
 
     Args:
         args: Configurations
@@ -224,7 +224,7 @@ def geonames_timezone(args, lat, lng):
     """Get GeoNames data from given latitude/longitude
 
     Args:
-        args: Configurations
+        args: Configuration from the config file
         lat (float): latitude
         lng (float): longitude
 
@@ -237,8 +237,8 @@ def geonames_timezone(args, lat, lng):
 
         e.g. URL: http://api.geonames.org/timezone?lat=47.01&lng=10.2&username=demo
 
-        Limitation:
-            30'000 credits daily limit per application
+        Limit:
+            30,000 credits daily limit per application
             (identified by the parameter 'username'), the hourly limit is
             2000 credits. A credit is a web service request hit for most services.
             An exception is thrown when the limit is exceeded.
@@ -265,7 +265,7 @@ def geonames_timezone(args, lat, lng):
 
 
 def tzwhere_timezone(args, lat, lng):
-    """Get timezone by latitude/longitude using tzwhere package.
+    """Get timezone by latitude/longitude using the tzwhere package.
 
     Args:
         args: Configurations
@@ -332,7 +332,7 @@ def abuseipdb_api(args, ip):
 
 def abuseipdb_history(args, ip):
     # History
-    # FIXME: No longer need (2017/12/11)
+    # FIXME: No longer needed (2017/12/11)
     # URL: http://www.abuseipdb.com/report-history/94.31.29.154
     data = {}
     retry = 0
@@ -361,7 +361,7 @@ def abuseipdb_web(args, ip):
     """Get information from `AbuseIPDB website <https://www.abuseipdb.com/>`_
 
     Args:
-        args: Configurations
+        args: Configuration from the config file
         ip (str): an IP address
     Returns:
         dict: AbuseIPDB information
@@ -415,7 +415,7 @@ def ipvoid_scan(args, ip):
     """Get Blacklist information from `IPVoid website <http://www.ipvoid.com/ip-blacklist-check>`_
 
     Args:
-        args: Configurations
+        args: Configuration via the config. file
         ip (str): an IP address
     Returns:
         dict: IPVoid information
@@ -454,7 +454,7 @@ def censys_api(args, ip):
     """Get information from Censys `Search API <https://censys.io/api/v1/docs/search>`_
 
     Args:
-        args: Configurations
+        args: Configuration via the config. file
         ip (str): an IP address
     Returns:
         dict: Censys information
@@ -501,7 +501,7 @@ def shodan_api(args, ip):
     """Get information from Shodan
 
     Args:
-        args: Configurations
+        args: Configuration via the config. file
         ip (str): an IP address
     Returns:
         dict: Shodan information
@@ -526,7 +526,7 @@ def virustotal_api(args, ip):
     """Get information from VirusTotal `Public API <https://www.virustotal.com/th/documentation/public-api/>`_
 
     Args:
-        args: Configurations
+        args: Configuration via the config. file
         ip (str): an IP address
     Returns:
         dict: Shodan information
@@ -566,7 +566,7 @@ def ping(args, ip):
     """Get information using Ping (ICMP protocol)
 
     Args:
-        args: Configurations
+        args: Configuration via the config. file
         ip (str): an IP address
     Returns:
         dict: Ping statistics information
@@ -594,7 +594,7 @@ def traceroute(args, ip):
     """Get information using traceroute
 
     Args:
-        args: Configurations
+        args: Configuration via the config. file
         ip (str): an IP address
     Returns:
         dict: traceroute information
@@ -620,7 +620,7 @@ def query_ip(args, ip):
     """Get all information of IP address
 
     Args:
-        args: Configurations
+        args: Configuration via the config. file
         ip (str): an IP address
     Returns:
         dict: Information of given IP address
