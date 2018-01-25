@@ -24,13 +24,13 @@ its use in cybersecurity analysis workflow.
 The API of the package is pretty simple. The workhorse function of the package 
 is ``know_your_ip``. It takes a csv file with a single column of IP addresses, 
 details about the API keys (in `know_your_ip.cfg <know_your_ip/know_your_ip.cfg>`) 
-and which columns you would like from which service (in `this example columns.txt <know_your_ip/columns.txt>`), 
+and which columns you would like from which service (in `this example columns.txt <know_your_ip/columns.txt>`__), 
 and appends the requested results to the IP list. This simple setup allows you to mix and match 
 easily. But if you want simpler access to specific functions, the package also provides that. 
 For instance, if you only care about getting the MaxMind data, use ``maxmind_geocode_ip``. And  
 if you would like data from the abuseipdb, call the ``abuseipdb_api`` function. These functions still 
 rely on the global config and columns files. For examples of how to use the package, 
-see `example.py <know_your_ip/example.py>`. 
+see `example.py <know_your_ip/example.py>`__. 
 
 Brief Primer on Functionality
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
