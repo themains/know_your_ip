@@ -21,14 +21,16 @@ If you are curious about potential application of the package, we have a
 :download:`presentation <../../know_your_ip/presentation/kip.pdf>` on 
 its use in cybersecurity analysis workflow.
 
-The workhorse function of the package is ``know_your_ip``. It takes a csv file 
-with a single column of IP addresses, details about the API keys and which 
-columns you would like from which service (in :download:`know_your_ip.cfg <../../know_your_ip/know_your_ip.cfg>`), 
-and appends the requested results to the IP list. But if you need a specific 
-piece of information, the package also exposes functions specific to various tasks. 
+The API of the package is pretty simple. The workhorse function of the package 
+is ``know_your_ip``. It takes a csv file with a single column of IP addresses, 
+details about the API keys (in :download:`know_your_ip.cfg <../../know_your_ip/know_your_ip.cfg>`) 
+and which columns you would like from which service (in :download:`this example columns.txt <../../know_your_ip/columns.txt>`), 
+and appends the requested results to the IP list. This simple setup allows you to mix and match 
+easily. But if you want simpler access to specific functions, the package also provides that. 
 For instance, if you only care about getting the MaxMind data, use ``maxmind_geocode_ip``. And  
-if you would like data from the abuseipdb, call the ``abuseipdb_api`` function. For concrete examples of 
-how to use the package, see :download:`example.py <../../know_your_ip/example.py>`. 
+if you would like data from the abuseipdb, call the ``abuseipdb_api`` function. These functions still 
+rely on the global config and columns files. For examples of how to use the package, 
+see :download:`example.py <../../know_your_ip/example.py>`. 
 
 Brief Primer on Functionality
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -75,7 +77,7 @@ lat/long and returns timezone.
 
 -  **Ping**: Sends out a ICMP echo request and waits for the reply.
    Measures round-trip time (min, max, and mean), reporting errors and
-   packet loss. The function for now works only on Linux machines. If
+   packet loss. The function ``ping`` for now works only on Linux machines. If
    there is a timeout, the function puts in nothing. If there is a
    reply, it add cols, packets\_sent, packets\_received, packets\_lost,
    min\_time, max\_time, avg\_time
@@ -180,8 +182,8 @@ General Layout of the Software
    ``output`` section.
 
 
-Preparing the configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Configuration File
+~~~~~~~~~~~~~~~~~~~
 
 Most of functions make calls to different public REST APIs and hence require an API key and/or username.
 You can register to get the API keys at the following URLs:

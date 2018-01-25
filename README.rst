@@ -1,4 +1,4 @@
-Know your IP
+Know Your IP
 ------------
 
 .. image:: https://travis-ci.org/themains/know_your_ip.svg?branch=master
@@ -21,10 +21,16 @@ If you are curious about potential application of the package, we have a
 `presentation <https://github.com/themains/know_your_ip/tree/master/know_your_ip/presentation/kip.pdf>`__ on 
 its use in cybersecurity analysis workflow.
 
-The package exposes a single function ``know_your_ip`` that takes a csv file 
-with a single column of IP addresses, details about the API keys and which 
-columns you would like from which service (in `know\_your\_ip.cfg <./know_your_ip/know_your_ip.cfg>`__), 
-and appends the requested results to the IP list.
+The API of the package is pretty simple. The workhorse function of the package 
+is ``know_your_ip``. It takes a csv file with a single column of IP addresses, 
+details about the API keys (in `know_your_ip.cfg <know_your_ip/know_your_ip.cfg>`) 
+and which columns you would like from which service (in `this example columns.txt <know_your_ip/columns.txt>`), 
+and appends the requested results to the IP list. This simple setup allows you to mix and match 
+easily. But if you want simpler access to specific functions, the package also provides that. 
+For instance, if you only care about getting the MaxMind data, use ``maxmind_geocode_ip``. And  
+if you would like data from the abuseipdb, call the ``abuseipdb_api`` function. These functions still 
+rely on the global config and columns files. For examples of how to use the package, 
+see `example.py <know_your_ip/example.py>`. 
 
 Brief Primer on Functionality
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -38,15 +44,15 @@ Brief Primer on Functionality
    a boundary within which the router must be present and then takes the
    centroid of it. The accuracy of these inferences is generally
    unknown, but can be fairly \`poor.' For instance, most geolocation
-   services place my IP as located more than 30 miles away from where I
-   am. Try http://www.geoipinfo.com/.
+   services place my IP more than 30 miles away from where I am. 
+   Try http://www.geoipinfo.com/.
 
    The script provides hook to `Maxmind City Lite
    DB <http://dev.maxmind.com/geoip/geoip2/geolite2/>`__. It expects a
    copy of the database to be in the folder in which the script is run.
    To download the database, go
    `here <http://dev.maxmind.com/geoip/geoip2/geolite2/>`__. The
-   function returns city, country, lat/long etc.
+   function ``maxmind_geocode_ip`` returns city, country, lat/long etc.
 
 -  **Timezone**: In theory, there are 24 time zones. In practice, a few
    more. For instance, countries like India have half-hour offsets.
@@ -66,12 +72,12 @@ Brief Primer on Functionality
 
 For its ease, we choose a `Python hook to nodeJS lat/long to
 timezone <https://github.com/pegler/>`__. To get the timezone, we first
-need to geocode the IP (see above). The function takes lat/long and
-returns timezone.
+need to geocode the IP (see above). The function ``tzwhere_timezone`` takes 
+lat/long and returns timezone.
 
 -  **Ping**: Sends out a ICMP echo request and waits for the reply.
    Measures round-trip time (min, max, and mean), reporting errors and
-   packet loss. The function for now works only on Linux machines. If
+   packet loss. The function ``ping`` for now works only on Linux machines. If
    there is a timeout, the function puts in nothing. If there is a
    reply, it add cols, packets\_sent, packets\_received, packets\_lost,
    min\_time, max\_time, avg\_time
@@ -139,7 +145,7 @@ Query Limits
 +---------------+--------------------+-------------------------------------------------------------------------------------+
 
 Installation
-~~~~~~~~~~~~
+------------
 
 The script depends on some libraries. Currently ``traceroute`` uses
 operating system command ``traceroute`` on Linux and ``tracert`` on
@@ -166,7 +172,7 @@ General Layout of the Software
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  In the config file (default: ``know_your_ip.cfg``), there are
-   settings grouped by each APIs.
+   settings grouped by function.
 -  For Maxmind API, the script expects a copy of the database to be in
    the folder specify by ``dbpath`` in the config file. To download the
    database, go `here <http://dev.maxmind.com/geoip/geoip2/geolite2/>`__
@@ -175,6 +181,31 @@ General Layout of the Software
    file but only one will be use by setting the ``columns`` variable in
    ``output`` section.
 
+
+Configuration File
+~~~~~~~~~~~~~~~~~~~
+
+Most of functions make calls to different public REST APIs and hence require an API key and/or username.
+You can register to get the API keys at the following URLs:
+
+    * `GeoNames <http://www.geonames.org/login>`__
+    * `AbuseIPDB <https://www.abuseipdb.com/register>`__
+    * `Censys <https://censys.io/register>`__
+    * `Shodan <https://account.shodan.io/registe>`__
+    * `VirusTotal <https://www.virustotal.com/en/documentation/virustotal-community/>`__
+
+    .. include:: know_your_ip/know_your_ip.cfg
+        :literal:
+
+    See `this example know_your_ip.cfg </know_your_ip/know_your_ip.cfg>`
+
+    We can also select the data columns which will be outputted to the CSV file in the text file.
+    To take out that column from the output file, add ``#`` at the start of line in the text file ``columns.txt``.
+
+    .. include:: know_your_ip/columns.txt
+        :literal:
+
+    See `this example columns.txt <../../know_your_ip/columns.txt>`
 
 Usage
 ~~~~~
@@ -205,8 +236,8 @@ Usage
     --no-header           Output without header at the first row
 
 
-General Examples
-~~~~~~~~~~~~~~~~
+Examples
+~~~~~~~~~~~~~
 
 ::
 
@@ -218,7 +249,7 @@ able to use this script as external lib.
 Documentation
 -------------
 
-For more information please visit the `project documentation page <http://know-your-ip.readthedocs.io/en/latest/>`__.
+For more information, please see `project documentation <http://know-your-ip.readthedocs.io/en/latest/>`__.
 
 Authors
 ----------
