@@ -23,7 +23,7 @@ its use in cybersecurity analysis workflow.
 
 The API of the package is pretty simple. The workhorse function of the package 
 is ``know_your_ip``. It takes a csv file with a single column of IP addresses, 
-details about the API keys (in `know_your_ip.cfg <know_your_ip/know_your_ip.cfg>`) 
+details about the API keys (in `know_your_ip.cfg <know_your_ip/know_your_ip.cfg>`__) 
 and which columns you would like from which service (in `this example columns.txt <know_your_ip/columns.txt>`__), 
 and appends the requested results to the IP list. This simple setup allows you to mix and match 
 easily. But if you want simpler access to specific functions, the package also provides that. 
