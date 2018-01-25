@@ -30,7 +30,8 @@ easily. But if you want simpler access to specific functions, the package also p
 For instance, if you only care about getting the MaxMind data, use ``maxmind_geocode_ip``. And  
 if you would like data from the abuseipdb, call the ``abuseipdb_api`` function. These functions still 
 rely on the global config and columns files. For examples of how to use the package, 
-see :download:`example.py <../../know_your_ip/example.py>`. 
+see :download:`example.py <../../know_your_ip/example.py>` or the jupyter notebook 
+`example.ipynb <../../know_your_ip/example.ipynb>`.
 
 Brief Primer on Functionality
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
