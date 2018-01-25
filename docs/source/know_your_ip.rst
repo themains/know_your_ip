@@ -170,7 +170,7 @@ General Layout of the Software
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  In the config file (default: ``know_your_ip.cfg``), there are
-   settings grouped by each APIs.
+   settings grouped by function.
 -  For Maxmind API, the script expects a copy of the database to be in
    the folder specify by ``dbpath`` in the config file. To download the
    database, go `here <http://dev.maxmind.com/geoip/geoip2/geolite2/>`__
@@ -183,8 +183,8 @@ General Layout of the Software
 Preparing the configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Most of APIs require API key and/or user information to access thiers APIs.
-So we must register to get these from thiers website and set to the configuration file.
+Most of functions make calls to different public REST APIs and hence require an API key and/or username.
+You can register to get the API keys at the following URLs:
 
     * `GeoNames <http://www.geonames.org/login>`__
     * `AbuseIPDB <https://www.abuseipdb.com/register>`__
@@ -197,8 +197,8 @@ So we must register to get these from thiers website and set to the configuratio
 
     See :download:`this example know_your_ip.cfg <../../know_your_ip/know_your_ip.cfg>`
 
-    We can also select the data columns will be output to CSV file from text file.
-    By adding ``#`` at the start of line to take out that column from the output file.
+    We can also select the data columns which will be outputted to the CSV file in the text file.
+    To take out that column from the output file, add ``#`` at the start of line in the text file ``columns.txt``.
 
     .. include:: ../../know_your_ip/columns.txt
         :literal:
