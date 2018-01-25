@@ -330,33 +330,6 @@ def abuseipdb_api(args, ip):
     return out
 
 
-def abuseipdb_history(args, ip):
-    # History
-    # FIXME: No longer needed (2017/12/11)
-    # URL: http://www.abuseipdb.com/report-history/94.31.29.154
-    data = {}
-    retry = 0
-    while retry < MAX_RETRIES:
-        try:
-            r = requests.get('http://www.abuseipdb.com/report-history/' + ip)
-            if r.status_code == 200:
-                soup = BeautifulSoup(r.text, 'lxml')
-                data = {}
-                for t in soup.select('table'):
-                    table = table_to_list(t)
-                    rows = []
-                    for r in table:
-                        rows.append('|'.join(r))
-                    break
-                data['abuseipdb.history'] = '\n'.join(rows)
-                break
-        except Exception as e:
-            logging.warn('abuseipdb_history: ' + str(e))
-            retry += 1
-            time.sleep(retry)
-    return data
-
-
 def abuseipdb_web(args, ip):
     """Get information from `AbuseIPDB website <https://www.abuseipdb.com/>`_
 
