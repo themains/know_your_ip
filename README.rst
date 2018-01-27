@@ -266,7 +266,7 @@ As an External Library with Pandas DataFrame
     import pandas as pd
     from know_your_ip import load_config, query_ip
 
-    df = pd.read_csv('know_your_ip/tests/input_small.csv', header=None)
+    df = pd.read_csv('know_your_ip/examples/input.csv', header=None)
 
     args = load_config('know_your_ip/know_your_ip.cfg')
 
