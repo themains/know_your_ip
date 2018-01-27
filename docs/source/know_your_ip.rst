@@ -160,7 +160,7 @@ API
 Installation
 -----------------
 
-The script depends on some libraries. Currently ``traceroute`` uses
+The script depends on some system libraries. Currently ``traceroute`` uses
 operating system command ``traceroute`` on Linux and ``tracert`` on
 Windows.
 

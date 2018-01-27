@@ -21,15 +21,19 @@ If you are curious about potential application of the package, we have a
 `presentation <https://github.com/themains/know_your_ip/tree/master/know_your_ip/presentation/kip.pdf>`__ on 
 its use in cybersecurity analysis workflow.
 
-The API of the package is pretty simple. The workhorse function of the package 
-is ``know_your_ip``. It takes a csv file with a single column of IP addresses, 
+You can use the package in two different ways. You can call it from the shell, or you can
+use it as an external library. From the shell, you can run ``know_your_ip``. It takes a csv 
+with a single column of IP addresses (sample file: `input.csv <know_your_ip/examples/input.csv>`__), 
 details about the API keys (in `know_your_ip.cfg <know_your_ip/know_your_ip.cfg>`__) 
 and which columns you would like from which service (in `this example columns.txt <know_your_ip/columns.txt>`__), 
 and appends the requested results to the IP list. This simple setup allows you to mix and match 
-easily. But if you want simpler access to specific functions, the package also provides that. 
-For instance, if you only care about getting the MaxMind data, use ``maxmind_geocode_ip``. And  
-if you would like data from the abuseipdb, call the ``abuseipdb_api`` function. These functions still 
-rely on the global config and columns files. For examples of how to use the package, 
+easily. 
+
+If you want to use it as an external library, the package also provides that. The function ``query_ip`` relies
+on the same config files as ``know_your_ip`` and takes an IP address. We illustrate its use below. You can 
+also get data from specific services. For instance, if you only care about getting the MaxMind data, 
+use ``maxmind_geocode_ip``. If you would like data from the abuseipdb, call the ``abuseipdb_api`` function, etc. 
+These functions still rely on the global config and columns files. For examples of how to use the package, 
 see `example.py <know_your_ip/examples/example.py>`__ or the jupyter notebook `example.ipynb <know_your_ip/examples/example.ipynb>`__.
 
 Brief Primer on Functionality
@@ -77,10 +81,11 @@ lat/long and returns timezone.
 
 -  **Ping**: Sends out a ICMP echo request and waits for the reply.
    Measures round-trip time (min, max, and mean), reporting errors and
-   packet loss. The function ``ping`` for now works only on Linux machines. If
-   there is a timeout, the function puts in nothing. If there is a
-   reply, it add cols, packets\_sent, packets\_received, packets\_lost,
-   min\_time, max\_time, avg\_time
+   packet loss. If there is a timeout, the function produces nothing. If 
+   there is a reply, it returns::
+
+    packets_sent, packets_received, packets_lost, min_time, 
+    max_time, avg_time
 
 -  **Traceroute**: Sends a UDP (or ICMP) packet. Builds the path for how
    the request is routed, noting routers and time.
@@ -145,9 +150,9 @@ Query Limits
 +---------------+--------------------+-------------------------------------------------------------------------------------+
 
 Installation
-------------
+---------------
 
-The script depends on some libraries. Currently ``traceroute`` uses
+The script depends on some system libraries. Currently ``traceroute`` uses
 operating system command ``traceroute`` on Linux and ``tracert`` on
 Windows.
 
@@ -168,8 +173,12 @@ Note: If you use anaconda on Windows, it is best to install Shapely via:
 
     conda install -c scitools shapely 
 
-General Layout of the Software
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Getting KYIP Ready For Use
+----------------------------
+
+To use the software, you need to take care of three things. You need to fill out
+the API keys in the config file, have a copy of MaxMind db if you want to use MaxMind,
+and pick out the columns you want in the columns.txt file:
 
 -  In the config file (default: ``know_your_ip.cfg``), there are
    settings grouped by function.
@@ -197,7 +206,7 @@ You can register to get the API keys at the following URLs:
     .. include:: know_your_ip/know_your_ip.cfg
         :literal:
 
-    See `this example know_your_ip.cfg </know_your_ip/know_your_ip.cfg>`
+    See `this example know_your_ip.cfg </know_your_ip/know_your_ip.cfg>`__
 
     We can also select the data columns which will be outputted to the CSV file in the text file.
     To take out that column from the output file, add ``#`` at the start of line in the text file ``columns.txt``.
@@ -205,10 +214,14 @@ You can register to get the API keys at the following URLs:
     .. include:: know_your_ip/columns.txt
         :literal:
 
-    See `this example columns.txt <../../know_your_ip/columns.txt>`
+    See `this example columns.txt <know_your_ip/columns.txt>`__
 
-Usage
-~~~~~
+
+Using KYIP
+------------
+
+From the command line
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
@@ -235,16 +248,31 @@ Usage
     -v, --verbose         Verbose mode
     --no-header           Output without header at the first row
 
-
-Examples
-~~~~~~~~~~~~~
-
 ::
 
     know_your_ip -file input.csv
 
-Please also look at `example.py <./know_your_ip/example.py>`__, this way we'll be
-able to use this script as external lib.
+As an External Library
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Please also look at `example.py <know_your_ip/examples/example.py>`__ or the jupyter notebook 
+`example.ipynb <know_your_ip/examples/example.ipynb>`__.
+
+As an External Library with Pandas DataFrame
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    import pandas as pd
+    from know_your_ip import load_config, query_ip
+
+    df = pd.read_csv('know_your_ip/tests/input_small.csv', header=None)
+
+    args = load_config('know_your_ip/know_your_ip.cfg')
+
+    odf = df[0].apply(lambda c: pd.Series(query_ip(args, c)))
+
+    odf.to_csv('output.csv', index=False)
 
 Documentation
 -------------
