@@ -23,11 +23,11 @@ its use in cybersecurity analysis workflow.
 
 You can use the package in two different ways. You can call it from the shell, or you can
 use it as an external library. From the shell, you can run ``know_your_ip``. It takes a csv 
-with a single column of IP addresses (sample file: `input.csv <know_your_ip/examples/input.csv>`__), 
+with a single column of IP addresses (sample input file: `input.csv <know_your_ip/examples/input.csv>`__), 
 details about the API keys (in `know_your_ip.cfg <know_your_ip/know_your_ip.cfg>`__) 
 and which columns you would like from which service (in `this example columns.txt <know_your_ip/columns.txt>`__), 
-and appends the requested results to the IP list. This simple setup allows you to mix and match 
-easily. 
+and appends the requested results to the IP list (sample output file: `output.csv <know_your_ip/examples/output.csv>`__). 
+This simple setup allows you to mix and match easily. 
 
 If you want to use it as an external library, the package also provides that. The function ``query_ip`` relies
 on the same config files as ``know_your_ip`` and takes an IP address. We illustrate its use below. You can 

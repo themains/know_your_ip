@@ -1,5 +1,5 @@
 Know Your IP
-------------
+--------------
 
 .. image:: https://travis-ci.org/themains/know_your_ip.svg?branch=master
     :target: https://travis-ci.org/themains/know_your_ip
@@ -26,8 +26,8 @@ use it as an external library. From the shell, you can run ``know_your_ip``. It 
 with a single column of IP addresses (sample input file: :download:`know_your_ip.cfg <../../know_your_ip/examples/input.csv>`), 
 details of the API keys to various services (in :download:`know_your_ip.cfg <../../know_your_ip/know_your_ip.cfg>`) 
 and which columns you would like from which service (in :download:`this example columns.txt <../../know_your_ip/columns.txt>`), 
-and appends the requested results to the IP list. This simple setup allows you to mix and match 
-easily. 
+and appends the requested results to the IP list (sample output file: :download:`output.csv <../../know_your_ip/examples/output.csv>`). 
+This simple setup allows you to mix and match easily. 
 
 If you want to use it as an external library, the package also provides that. The function ``query_ip`` relies
 on the same config files as ``know_your_ip`` and takes an IP address. We illustrate its use below. You can 
