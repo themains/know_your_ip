@@ -7,6 +7,9 @@ Know Your IP
     :target: https://ci.appveyor.com/project/themains/know_your_ip
 .. image:: https://img.shields.io/pypi/v/know_your_ip.svg
     :target: https://pypi.python.org/pypi/know_your_ip
+.. image:: https://readthedocs.org/projects/know_your_ip/badge/?version=latest
+    :target: http://know_your_ip.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
 
 Get data on IP addresses. Learn where they are located (lat/long,
 country, city, time zone), whether they are blacklisted or not (by
