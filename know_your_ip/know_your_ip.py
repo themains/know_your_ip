@@ -37,8 +37,7 @@ MAX_RETRIES = 5
 
 
 def setup_logger():
-    """ Set up logging
-    """
+    """ Set up logging"""
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s %(levelname)-8s %(message)s',
                         datefmt='%m-%d %H:%M',
@@ -92,7 +91,7 @@ def clean_colname(name):
 
 
 def load_config(args=None):
-    """Load configuration from file
+    """Load details of API keys etc. from the config. file
 
     Args:
         args: load default config from ``<package dir>/know_your_ip.cfg`` if None or
@@ -103,7 +102,6 @@ def load_config(args=None):
 
     Notes:
         See :download:`this default know_your_ip.cfg <../../know_your_ip/know_your_ip.cfg>`
-
     """
 
     if args is None or isinstance(args, str):
@@ -191,17 +189,17 @@ def load_config(args=None):
 
 
 def maxmind_geocode_ip(args, ip):
-    """Get geolocation data of IP address from Maxmind City database (GeoLite2-City.mmdb)
+    """Get location of IP address from Maxmind City database (GeoLite2-City.mmdb)
 
     Args:
-        args: Configurations
+        args: via the ``load_config`` function.
         ip: an IP address
 
     Returns:
-        dict: Geocode data
+        dict: Geolocation data
 
     Notes:
-        There are others Maxmind database list following:
+        There are other Maxmind databases including:
             * Country Database (GeoLite2-Country.mmdb)
             * Anonymous IP Database (GeoIP2-Anonymouse-IP.mmdb)
             * Connection-Type Database (GeoIP2-Connection-Type.mmdb)
@@ -221,10 +219,10 @@ def maxmind_geocode_ip(args, ip):
 
 
 def geonames_timezone(args, lat, lng):
-    """Get GeoNames data from given latitude/longitude
+    """Get timezone for a latitude/longitude from GeoNames
 
     Args:
-        args: Configuration from the config file
+        args: via the ``load_config`` function.
         lat (float): latitude
         lng (float): longitude
 
@@ -243,6 +241,8 @@ def geonames_timezone(args, lat, lng):
             2000 credits. A credit is a web service request hit for most services.
             An exception is thrown when the limit is exceeded.
 
+    Example:
+        geonames_timezone(args, 32.0617, 118.7778)
     """
 
     data = {}
@@ -265,16 +265,18 @@ def geonames_timezone(args, lat, lng):
 
 
 def tzwhere_timezone(args, lat, lng):
-    """Get timezone by latitude/longitude using the tzwhere package.
+    """Get timezone of a latitude/longitude using the tzwhere package.
 
     Args:
-        args: Configurations
+        args: via the ``load_config`` function.
         lat (float): latitude
         lng (float): longitude
 
     Returns:
         dict: timezone data
 
+    Example:
+        tzwhere_timezone(args, 32.0617, 118.7778)
     """
 
     from tzwhere import tzwhere
@@ -288,8 +290,9 @@ def abuseipdb_api(args, ip):
     """Get information from AbuseIPDB via `API <https://www.abuseipdb.com/api.html>`_
 
     Args:
-        args: Configurations
+        args: via the ``load_config`` function.
         ip (str): an IP address
+    
     Returns:
         dict: AbuseIPDB information
 
@@ -297,6 +300,8 @@ def abuseipdb_api(args, ip):
         * https://www.abuseipdb.com/api.html
         * e.g. https://www.abuseipdb.com/check/[IP]/json?key=[API_KEY]&days=[DAYS]
 
+    Example:
+        abuseipdb_api(args, '222.186.30.49')
     """
 
     out = {}
@@ -334,14 +339,17 @@ def abuseipdb_web(args, ip):
     """Get information from `AbuseIPDB website <https://www.abuseipdb.com/>`_
 
     Args:
-        args: Configuration from the config file
+        args: via the ``load_config`` function.
         ip (str): an IP address
+    
     Returns:
         dict: AbuseIPDB information
 
     References:
         e.g. http://www.abuseipdb.com/check/94.31.29.154
 
+    Example:
+        abuseipdb_web(args, '222.186.30.49')
     """
 
     data = {}
@@ -388,11 +396,14 @@ def ipvoid_scan(args, ip):
     """Get Blacklist information from `IPVoid website <http://www.ipvoid.com/ip-blacklist-check>`_
 
     Args:
-        args: Configuration via the config. file
+        args: via the ``load_config`` function.
         ip (str): an IP address
+    
     Returns:
         dict: IPVoid information
 
+    Example:
+        ipvoid_scan(args, '222.186.30.49')
     """
 
     retry = 0
@@ -427,7 +438,7 @@ def censys_api(args, ip):
     """Get information from Censys `Search API <https://censys.io/api/v1/docs/search>`_
 
     Args:
-        args: Configuration via the config. file
+        args: via the ``load_config`` function.
         ip (str): an IP address
     Returns:
         dict: Censys information
@@ -435,6 +446,8 @@ def censys_api(args, ip):
     References:
         Fields: https://censys.io/ipv4/help
 
+    Example:
+        censys_api(args, '222.186.30.49')
     """
 
     fields = []
@@ -474,11 +487,14 @@ def shodan_api(args, ip):
     """Get information from Shodan
 
     Args:
-        args: Configuration via the config. file
+        args: via the ``load_config`` function.
         ip (str): an IP address
+    
     Returns:
         dict: Shodan information
 
+    Example:
+        shodan_api(args, '222.186.30.49')
     """
 
     api = shodan.Shodan(args.shodan_api_key)
@@ -499,8 +515,9 @@ def virustotal_api(args, ip):
     """Get information from VirusTotal `Public API <https://www.virustotal.com/th/documentation/public-api/>`_
 
     Args:
-        args: Configuration via the config. file
+        args: via the ``load_config`` function.
         ip (str): an IP address
+    
     Returns:
         dict: Shodan information
 
@@ -511,6 +528,8 @@ def virustotal_api(args, ip):
             * Daily quota 5760 requests/day
             * Monthly quota   178560 requests/month
 
+    Example:
+        virustotal_api(args, '222.186.30.49')
     """
 
     url = 'https://www.virustotal.com/vtapi/v2/ip-address/report'
@@ -539,8 +558,9 @@ def ping(args, ip):
     """Get information using Ping (ICMP protocol)
 
     Args:
-        args: Configuration via the config. file
+        args: via the ``load_config`` function.
         ip (str): an IP address
+    
     Returns:
         dict: Ping statistics information
 
@@ -549,6 +569,8 @@ def ping(args, ip):
         raw socket and you must have root (on Linux) or Admin (on Windows)
         privileges to run.
 
+    Example:
+        ping(args, '222.186.30.49')
     """
 
     data = {}
@@ -567,15 +589,18 @@ def traceroute(args, ip):
     """Get information using traceroute
 
     Args:
-        args: Configuration via the config. file
+        args: via the ``load_config`` function.
         ip (str): an IP address
+    
     Returns:
         dict: traceroute information
 
     Notes:
-        Currently traceroute uses operating system command traceroute on
+        Currently traceroute uses the operating system command traceroute on
         Linux and tracert on Windows.
 
+    Example:
+        traceroute(args, '222.186.30.49')
     """
 
     data = {}
@@ -593,11 +618,14 @@ def query_ip(args, ip):
     """Get all information of IP address
 
     Args:
-        args: Configuration via the config. file
+        args: via the ``load_config`` function.
         ip (str): an IP address
+    
     Returns:
-        dict: Information of given IP address
+        dict: Information on the given IP address
 
+    Example:
+        query_ip(args, '222.186.30.49')
     """
 
     data = {'ip': ip}
