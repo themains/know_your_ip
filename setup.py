@@ -139,20 +139,17 @@ setup(
         'know_your_ip': ['db/GeoLite2-City.mmdb',
                          'db/GeoLite2-Country.mmdb',
                          'db/README.txt',
-                         'tests/input.csv',
-                         'tests/input_small.csv',
+                         'examples/input.csv',
+                         'examples/example.py',
                          'abuseipdb_cat_catid.csv',
                          'columns.txt',
                          'know_your_ip.cfg'
                          ],
     },
-
+    
     # Although 'package_data' is the preferred approach, in some case you may
     # need to place data files outside of your packages. See:
     # http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files # noqa
-    # In this case, 'ethnicolr' will be installed into '<sys.prefix>/ethnicolr'
-
-    #data_files=[('ethnicolr', ['ethnicolr/data/test.txt'])],
 
     # To provide executable scripts, use entry points in preference to the
     # "scripts" keyword. Entry points provide cross-platform support and allow

@@ -206,16 +206,10 @@ You can register to get the API keys at the following URLs:
     * `Shodan <https://account.shodan.io/registe>`__
     * `VirusTotal <https://www.virustotal.com/en/documentation/virustotal-community/>`__
 
-    .. include:: know_your_ip/know_your_ip.cfg
-        :literal:
-
     See `this example know_your_ip.cfg </know_your_ip/know_your_ip.cfg>`__
 
     We can also select the data columns which will be outputted to the CSV file in the text file.
     To take out that column from the output file, add ``#`` at the start of line in the text file ``columns.txt``.
-
-    .. include:: know_your_ip/columns.txt
-        :literal:
 
     See `this example columns.txt <know_your_ip/columns.txt>`__
 
