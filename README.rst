@@ -192,7 +192,9 @@ and pick out the columns you want in the columns.txt file:
    columns to be output by the script. We may have more than one columns
    file but only one will be use by setting the ``columns`` variable in
    ``output`` section.
-
+-  One more thing re. MaxMind--- you can comment out line 118 and 119 in 
+   `know_your_ip.py` if you don't have a userid or API Key as 
+   Maxmind is also available for free. (see `issue <https://github.com/themains/know_your_ip/issues/1>`__)
 
 Configuration File
 ~~~~~~~~~~~~~~~~~~~
