@@ -627,6 +627,7 @@ def query_ip(args, ip):
     """
 
     data = {'ip': ip}
+    udata = {}
     try:
         if args.ping_enable:
             out = ping(args, ip)
@@ -663,7 +664,6 @@ def query_ip(args, ip):
             out = virustotal_api(args, ip)
             data.update(out)
         # FIXME: Encode all columns to 'utf-8'
-        udata = {}
         for k, v in data.items():
             if k in args.output_columns:
                 try:
