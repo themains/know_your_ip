@@ -736,7 +736,10 @@ def main():
                 edata = {}
                 for k, v in data.items():
                     if v is not None:
-                        edata[k] = v.decode('utf-8')
+                        try:
+                            edata[k] = v.decode('utf-8')
+                        except:
+                            edata[k] = v
                 writer.writerow(edata)
                 row += 1
         except KeyboardInterrupt:
