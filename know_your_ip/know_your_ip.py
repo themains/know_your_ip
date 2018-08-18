@@ -115,8 +115,6 @@ def load_config(args=None):
     config.read(args.config)
 
     # Maxmind configuration
-    args.maxmind_user_id = config.get('maxmind', 'user_id')
-    args.maxmind_license_key = config.get('maxmind', 'license_key')
     args.maxmind_dbpath = config.get('maxmind', 'dbpath')
     if not os.path.exists(args.maxmind_dbpath):
         args.maxmind_dbpath = resource_filename(__name__, 'db')
