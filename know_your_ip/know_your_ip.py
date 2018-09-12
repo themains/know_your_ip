@@ -505,7 +505,7 @@ def shodan_api(args, ip):
                 out[k] = '|'.join([str(i) for i in out[k]])
             data['shodan.' + k] = out[k]
     except shodan.APIError as e:
-        logging.error(e)
+        logging.warn('shodan_api(ip={0:s}): {1!s}'.format(ip, e))
     return data
 
 
@@ -517,7 +517,7 @@ def virustotal_api(args, ip):
         ip (str): an IP address
     
     Returns:
-        dict: Shodan information
+        dict: Virustotal information
 
     Notes:
         Public API Limitation
