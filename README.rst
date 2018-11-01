@@ -39,6 +39,10 @@ use ``maxmind_geocode_ip``. If you would like data from the abuseipdb, call the 
 These functions still rely on the global config and columns files. For examples of how to use the package, 
 see `example.py <know_your_ip/examples/example.py>`__ or the jupyter notebook `example.ipynb <know_your_ip/examples/example.ipynb>`__.
 
+Downloads
+----------
+By November 1st, 2018, the package had been downloaded over 11,000 times (see `saved BigQuery <https://bigquery.cloud.google.com/savedquery/267723140544:b856fa72725c490281f6c86c83c112d6>`__).
+
 Brief Primer on Functionality
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
