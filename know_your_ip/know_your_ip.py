@@ -153,6 +153,10 @@ def load_config(args=None):
     # ipvoid configuration
     args.ipvoid_enable = config.getint('ipvoid', 'enable')
 
+    # apivoid configuration
+    args.apivoid_enable = config.getint('apivoid', 'enable')
+    args.apivoid_api_key = config.get('apivoid', 'api_key')
+
     # Censys configuration
     args.censys_enable = config.getint('censys', 'enable')
     args.censys_api_url = config.get('censys', 'api_url')
@@ -432,6 +436,45 @@ def ipvoid_scan(args, ip):
     return data
 
 
+def apivoid_api(args, ip):
+    """Get information from APIVoid `IP Reputation API <https://www.apivoid.com/api/ip-reputation/>`_
+
+    Args:
+        args: via the ``load_config`` function.
+        ip (str): an IP address
+
+    Returns:
+        dict: IP Reputation API information
+
+    Notes:
+        Must register and get 25 free API credits valid for 30 days
+
+    Example:
+        apivoid_api(args, '222.186.30.49')
+    """
+
+    url = 'https://endpoint.apivoid.com/iprep/v1/pay-as-you-go/'
+    params = {'ip': ip, 'key': args.apivoid_api_key}
+    retry = 0
+    data = {}
+    while retry < MAX_RETRIES:
+        try:
+            r = requests.get(url, params=params)
+            if r.status_code == 200:
+                out = r.json()
+                out = flatten_dict(out['data']['report'], separator='.')
+                for k in out.keys():
+                    if isinstance(out[k], list):
+                        out[k] = '|'.join([str(i) for i in out[k]])
+                    data['apivoid.' + k] = out[k]
+                break
+        except Exception as e:
+            logging.warn('apivoid_api: ' + str(e))
+            retry += 1
+            time.sleep(retry)
+    return data
+
+
 def censys_api(args, ip):
     """Get information from Censys `Search API <https://censys.io/api/v1/docs/search>`_
 
@@ -653,6 +696,9 @@ def query_ip(args, ip):
             data.update(out)
         if args.ipvoid_enable:
             out = ipvoid_scan(args, ip)
+            data.update(out)
+        if args.apivoid_enable:
+            out = apivoid_api(args, ip)
             data.update(out)
         if args.censys_enable:
             out = censys_api(args, ip)

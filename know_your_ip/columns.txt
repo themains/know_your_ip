@@ -112,6 +112,22 @@ ipvoid.blacklist_status
 ipvoid.reverse_dns
 #ipvoid.alerts
 
+# apivoid
+apivoid.information.reverse_dns
+#apivoid.information.continent_code
+#apivoid.information.continent_name
+#apivoid.information.country_code
+#apivoid.information.country_name
+#apivoid.information.region_name
+#apivoid.information.city_name
+#apivoid.information.latitude
+#apivoid.information.longitude
+#apivoid.information.isp
+apivoid.blacklists.detections
+#apivoid.blacklists.engines_count
+#apivoid.blacklists.detection_rate
+#apivoid.blacklists.scantime
+
 # censys
 # All columns list :- https://censys.io/ipv4/help
 #censys.autonomous_system.asn
