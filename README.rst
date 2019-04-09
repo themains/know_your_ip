@@ -136,6 +136,8 @@ lat/long and returns timezone.
    -  `ipvoid.com <http://ipvoid.com>`__: Tracks information on IPs.
       There is no API. We scrape information about IPs including status
       on various blacklist sites.
+      ipvoid.com is now throttling requests so we have added apivoid.com, a 
+      paid version API access to ipvoid to know your ip. 
 
 Query Limits
 ~~~~~~~~~~~~
