@@ -10,6 +10,8 @@ Know Your IP
 .. image:: https://readthedocs.org/projects/know_your_ip/badge/?version=latest
     :target: http://know_your_ip.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
+.. image:: https://pepy.tech/badge/know-your-ip
+    :alt: https://pepy.tech/project/know-your-ip
 
 Get data on IP addresses. Learn where they are located (lat/long,
 country, city, time zone), whether they are blacklisted or not (by
