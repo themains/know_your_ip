@@ -7,8 +7,8 @@ Know Your IP
     :target: https://ci.appveyor.com/project/themains/know_your_ip
 .. image:: https://img.shields.io/pypi/v/know_your_ip.svg
     :target: https://pypi.python.org/pypi/know_your_ip
-.. image:: https://readthedocs.org/projects/know_your_ip/badge/?version=latest
-    :target: http://know_your_ip.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/know-your-ip/badge/?version=latest
+    :target: http://know-your-ip.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 .. image:: https://pepy.tech/badge/know-your-ip
     :alt: https://pepy.tech/project/know-your-ip
