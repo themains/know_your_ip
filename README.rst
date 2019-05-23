@@ -9,7 +9,6 @@ Know Your IP
     :target: https://pypi.python.org/pypi/know_your_ip
 .. image:: https://readthedocs.org/projects/know-your-ip/badge/?version=latest
     :target: http://know-your-ip.readthedocs.io/en/latest/?badge=latest
-    :alt: Documentation Status
 .. image:: https://pepy.tech/badge/know-your-ip
     :alt: https://pepy.tech/project/know-your-ip
 
