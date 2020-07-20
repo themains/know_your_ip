@@ -462,6 +462,8 @@ def apivoid_api(args, ip):
             r = requests.get(url, params=params)
             if r.status_code == 200:
                 out = r.json()
+                logging.info('apivoid_api: credit_remained: %0.2f, estimated_queries: %s' %
+                             (out['credits_remained'], out['estimated_queries']))
                 out = flatten_dict(out['data']['report'], separator='.')
                 for k in out.keys():
                     if isinstance(out[k], list):
