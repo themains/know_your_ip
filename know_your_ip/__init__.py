@@ -24,7 +24,8 @@ from .know_your_ip import (load_config,
                           virustotal_api,
                           ping,
                           traceroute,
-                          query_ip
+                          query_ip,
+                          apivoid_api
                           )
 
 __all__ = ["load_config",
@@ -39,5 +40,6 @@ __all__ = ["load_config",
            "virustotal_api",
            "ping",
            "traceroute",
-           "query_ip"
+           "query_ip",
+           "apivoid_api"
            ]
