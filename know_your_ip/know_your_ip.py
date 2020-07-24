@@ -680,17 +680,20 @@ def query_ip(args, ip):
         if args.traceroute_enable:
             out = traceroute(args, ip)
             data.update(out)
-        if args.maxmind_enable:
-            out = maxmind_geocode_ip(args, ip)
-            lat = out['maxmind.location.latitude']
-            lng = out['maxmind.location.longitude']
-            data.update(out)
-        if args.geonames_enable:
-            out = geonames_timezone(args, lat, lng)
-            data.update(out)
-        if args.tzwhere_enable:
-            tz = tzwhere_timezone(args, lat, lng)
-            data['tzwhere.timezone'] = tz
+        try:
+            if args.maxmind_enable:
+                out = maxmind_geocode_ip(args, ip)
+                lat = out['maxmind.location.latitude']
+                lng = out['maxmind.location.longitude']
+                data.update(out)
+            if args.geonames_enable:
+                out = geonames_timezone(args, lat, lng)
+                data.update(out)
+            if args.tzwhere_enable:
+                tz = tzwhere_timezone(args, lat, lng)
+                data['tzwhere.timezone'] = tz
+        except Exception as e:
+            logging.error(e)
         if args.abuseipdb_enable:
             out = abuseipdb_api(args, ip)
             data.update(out)
