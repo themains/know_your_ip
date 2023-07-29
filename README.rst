@@ -1,8 +1,6 @@
 Know Your IP
 ------------
 
-.. image:: https://travis-ci.org/themains/know_your_ip.svg?branch=master
-    :target: https://travis-ci.org/themains/know_your_ip
 .. image:: https://ci.appveyor.com/api/projects/status/qfvbu8h99ymtw2ub?svg=true
     :target: https://ci.appveyor.com/project/themains/know_your_ip
 .. image:: https://img.shields.io/pypi/v/know_your_ip.svg
