@@ -7,7 +7,7 @@ Know Your IP
     :target: https://pypi.python.org/pypi/know_your_ip
 .. image:: https://readthedocs.org/projects/know-your-ip/badge/?version=latest
     :target: http://know-your-ip.readthedocs.io/en/latest/?badge=latest
-.. image:: https://pepy.tech/badge/know-your-ip
+.. image:: https://static.pepy.tech/badge/know-your-ip
     :target: https://pepy.tech/project/know-your-ip
 
 Get data on IP addresses. Learn where they are located (lat/long,
